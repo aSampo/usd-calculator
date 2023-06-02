@@ -1,15 +1,15 @@
 import { SimpleGrid } from "@chakra-ui/react";
 import DolarCard from "./DolarCard";
+import useStore from "../store";
 
 const DolarOptions = () => {
+  const { dollarPrices } = useStore();
+
   return (
-    <SimpleGrid columns={3} spacing={5}>
-      <DolarCard />
-      <DolarCard />
-      <DolarCard />
-      <DolarCard />
-      <DolarCard />
-      <DolarCard />
+    <SimpleGrid columns={3} spacing={3}>
+      {dollarPrices.map((dollarPrice: any) => (
+        <DolarCard nombre={dollarPrice.nombre} venta={dollarPrice.venta} />
+      ))}
     </SimpleGrid>
   );
 };

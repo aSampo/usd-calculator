@@ -1,17 +1,19 @@
 import { Card, CardBody, Flex, Text } from "@chakra-ui/react";
-import useStore from "../store/store";
 
-const DolarCard = () => {
-  const { bluePrice } = useStore();
+interface DolarCardProps {
+  nombre: string;
+  venta: string;
+}
 
+const DolarCard = ({ nombre, venta }: DolarCardProps) => {
   return (
     <Card>
       <CardBody>
         <Flex direction="column" alignItems="center">
-          <Text as="b" fontSize="md">
-            Blue
+          <Text as="b" fontSize="sm">
+            {nombre}
           </Text>
-          <Text fontSize="sm">{bluePrice}</Text>
+          <Text fontSize="sm">$ {venta}</Text>
         </Flex>
       </CardBody>
     </Card>

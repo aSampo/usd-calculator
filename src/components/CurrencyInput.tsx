@@ -21,17 +21,18 @@ const CurrencyInput = () => {
   const formatValue = (value: string): string => {
     const numberParts = value.replace(/[^0-9]/g, "").split(".");
     const integerPart = numberParts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    const formatted = numberParts.length > 1 ? `${integerPart}.${numberParts[1]}` : integerPart;
+    const formatted =
+      numberParts.length > 1 ? `${integerPart}.${numberParts[1]}` : integerPart;
     return formatted;
   };
 
   return (
     <Stack>
-      <Select size="sm" variant="filled" width="45%">
+      <Select size="sm" variant="filled" minWidth="100px" width="30%">
         <option value="option1">USD 🇺🇸</option>
         <option value="option2">ARS 🇦🇷</option>
       </Select>
-      <NumberInput min={0} value={formattedValue} >
+      <NumberInput min={0} value={formattedValue}>
         <InputGroup>
           <InputLeftElement
             pointerEvents="none"
