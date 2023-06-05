@@ -6,40 +6,40 @@ import {
   InputGroup,
   InputLeftElement,
 } from "@chakra-ui/react";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import { FaDollarSign } from "react-icons/fa";
+import useStore from "../store";
 
 const CurrencyInput = () => {
-  const [formattedValue, setFormattedValue] = useState("");
+  const { setInput, input } = useStore();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const rawValue = e.target.value;
-    const formatted = formatValue(rawValue);
-    setFormattedValue(formatted);
-  };
-
-  const formatValue = (value: string): string => {
-    const numberParts = value.replace(/[^0-9]/g, "").split(".");
-    const integerPart = numberParts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    const formatted =
-      numberParts.length > 1 ? `${integerPart}.${numberParts[1]}` : integerPart;
-    return formatted;
+    setInput(e.target.value);
   };
 
   return (
     <Stack>
-      <Select size="sm" variant="filled" minWidth="100px" width="30%">
+      <Select
+        size="sm"
+        variant="filled"
+        minWidth="100px"
+        width="30%"
+        bg="secondary.200"
+        focusBorderColor="primary.500"
+      >
         <option value="option1">USD 🇺🇸</option>
         <option value="option2">ARS 🇦🇷</option>
       </Select>
-      <NumberInput min={0} value={formattedValue}>
+      <NumberInput min={0} value={input} focusBorderColor="primary.500">
         <InputGroup>
           <InputLeftElement
             pointerEvents="none"
             children={<FaDollarSign color="gray.300" />}
           />
           <NumberInputField
+            bg="secondary.200"
             onChange={handleChange}
+            color="primary.500"
             style={{ textAlign: "right" }}
           />
         </InputGroup>
