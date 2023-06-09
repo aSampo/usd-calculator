@@ -14,7 +14,7 @@ const DolarCard = ({ nombre, venta }: DolarCardProps) => {
             {nombre}
           </Text>
           <Text fontSize="sm" color="secondary.200">
-            $ {venta}
+            {`$ ${venta}`}
           </Text>
         </Flex>
       </CardBody>

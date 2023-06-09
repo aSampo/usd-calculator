@@ -6,21 +6,47 @@ import {
   InputGroup,
   InputLeftElement,
 } from "@chakra-ui/react";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import { FaDollarSign } from "react-icons/fa";
 import useStore from "../store";
 
 const CurrencyInput = () => {
-  const { setInput, input } = useStore();
+  const { setInput } = useStore();
+  const [stringInput, setStringInput] = useState("0");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
+    setStringInput(e.target.value);
+
+    const number = parseFloat(e.target.value);
+    setInput(number ? number : 0);
   };
 
-  const formatNumber = (number: string) => {
-    return number.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  const handleFocus = () => {
+    if (stringInput === "0") {
+      setStringInput("");
+    }
   };
 
+  const handleBlur = () => {
+    if (stringInput === "") {
+      setStringInput("0");
+    }
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const key = event.key;
+    const isNumericKey = key >= "0" && key <= "9";
+    const isAllowedAction =
+      isNumericKey ||
+      key === "Backspace" ||
+      key === "Delete" ||
+      key === "ArrowLeft" ||
+      key === "ArrowRight"; // Permite Ctrl+A para seleccionar todo el texto
+
+    if (!isAllowedAction) {
+      event.preventDefault();
+    }
+  };
   return (
     <Stack>
       <Select
@@ -34,7 +60,15 @@ const CurrencyInput = () => {
         <option value="option1">USD 🇺🇸</option>
         <option value="option2">ARS 🇦🇷</option>
       </Select>
-      <NumberInput min={0} value={input} focusBorderColor="primary.500">
+      <NumberInput
+        min={0}
+        max={100000000}
+        value={stringInput}
+        focusBorderColor="primary.500"
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        onKeyDown={handleKeyDown}
+      >
         <InputGroup>
           <InputLeftElement
             pointerEvents="none"
@@ -42,7 +76,6 @@ const CurrencyInput = () => {
           />
           <NumberInputField
             bg="secondary.200"
-            value={formatNumber(input)} // Aplica el formato al valor visualizado
             onChange={handleChange}
             color="primary.500"
             style={{ textAlign: "right" }}

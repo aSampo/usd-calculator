@@ -11,13 +11,13 @@ const Results = () => {
         display="flex"
         flexDirection="column"
         justifyContent="center"
-        gap={3}
+        gap={5}
       >
         {dollarPrices.map((dollarPrice: any) => (
           <CurrencyResult
             nombre={dollarPrice.nombre}
-            venta={parseFloat(dollarPrice.venta)}
-            input={parseFloat(input)}
+            venta={dollarPrice.venta}
+            input={input}
           />
         ))}
       </CardBody>
