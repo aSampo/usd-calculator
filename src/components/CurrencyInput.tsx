@@ -15,7 +15,7 @@ const CurrencyInput = () => {
   const [stringInput, setStringInput] = useState("0");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setStringInput(e.target.value);
+    setStringInput(e.target.value.replace(/[^0-9]/g, ""));
 
     const number = parseFloat(e.target.value);
     setInput(number ? number : 0);
@@ -33,20 +33,6 @@ const CurrencyInput = () => {
     }
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    const key = event.key;
-    const isNumericKey = key >= "0" && key <= "9";
-    const isAllowedAction =
-      isNumericKey ||
-      key === "Backspace" ||
-      key === "Delete" ||
-      key === "ArrowLeft" ||
-      key === "ArrowRight"; // Permite Ctrl+A para seleccionar todo el texto
-
-    if (!isAllowedAction) {
-      event.preventDefault();
-    }
-  };
   return (
     <Stack>
       <Select
@@ -67,7 +53,6 @@ const CurrencyInput = () => {
         focusBorderColor="primary.500"
         onFocus={handleFocus}
         onBlur={handleBlur}
-        onKeyDown={handleKeyDown}
       >
         <InputGroup>
           <InputLeftElement
