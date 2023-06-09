@@ -17,6 +17,10 @@ const CurrencyInput = () => {
     setInput(e.target.value);
   };
 
+  const formatNumber = (number: string) => {
+    return number.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  };
+
   return (
     <Stack>
       <Select
@@ -38,6 +42,7 @@ const CurrencyInput = () => {
           />
           <NumberInputField
             bg="secondary.200"
+            value={formatNumber(input)} // Aplica el formato al valor visualizado
             onChange={handleChange}
             color="primary.500"
             style={{ textAlign: "right" }}
