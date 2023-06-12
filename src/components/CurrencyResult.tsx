@@ -12,7 +12,11 @@ const CurrencyResult = ({ nombre, venta, input }: any) => {
       </Text>
       <Spacer />
       <Text fontSize="xl" color="secondary.200">
-        $ {result.toFixed(2)}
+        ${" "}
+        {result.toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })}
       </Text>
     </Flex>
   );
