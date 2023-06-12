@@ -15,8 +15,6 @@ export const getDollarPrices = async () => {
         return { venta, nombre: nombreSinDolar.charAt(0).toUpperCase() + nombreSinDolar.slice(1) };
       })
       .filter((casa: any) => nombresPermitidos.includes(casa.nombre));
-
-    console.log("data :>> ", dollarPrices);
     return dollarPrices;
   } catch (error) {
     console.error("Error al obtener el valor del dólar:", error);

@@ -11,7 +11,7 @@ import { FaDollarSign } from "react-icons/fa";
 import useStore from "../store";
 
 const CurrencyInput = () => {
-  const { setInput } = useStore();
+  const { setInput, selectedCurrency, setSelectedCurrency } = useStore();
   const [stringInput, setStringInput] = useState("0");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -33,6 +33,10 @@ const CurrencyInput = () => {
     }
   };
 
+  const handleCurrencyChange = (event: any) => {
+    setSelectedCurrency(event.target.value);
+  };
+
   return (
     <Stack>
       <Select
@@ -42,13 +46,13 @@ const CurrencyInput = () => {
         width="30%"
         bg="secondary.200"
         focusBorderColor="primary.500"
+        value={selectedCurrency}
+        onChange={handleCurrencyChange}
       >
-        <option value="option1">USD 🇺🇸</option>
-        <option value="option2">ARS 🇦🇷</option>
+        <option value="usd">USD 🇺🇸</option>
+        <option value="ars">ARS 🇦🇷</option>
       </Select>
       <NumberInput
-        min={0}
-        max={100000000}
         value={stringInput}
         focusBorderColor="primary.500"
         onFocus={handleFocus}
@@ -60,6 +64,7 @@ const CurrencyInput = () => {
             children={<FaDollarSign color="gray.300" />}
           />
           <NumberInputField
+            maxLength={13}
             bg="secondary.200"
             onChange={handleChange}
             color="primary.500"
