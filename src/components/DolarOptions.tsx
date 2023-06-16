@@ -8,7 +8,7 @@ const DolarOptions = () => {
   return (
     <SimpleGrid columns={3} spacing={3}>
       {dollarPrices.map((dollarPrice: any) => (
-        <DolarCard nombre={dollarPrice.nombre} venta={dollarPrice.venta} />
+        <DolarCard key={dollarPrice.nombre} nombre={dollarPrice.nombre} venta={dollarPrice.venta} />
       ))}
     </SimpleGrid>
   );

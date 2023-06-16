@@ -15,6 +15,7 @@ const Results = () => {
       >
         {dollarPrices.map((dollarPrice: any) => (
           <CurrencyResult
+            key={dollarPrice.nombre}
             nombre={dollarPrice.nombre}
             venta={dollarPrice.venta}
             input={input}
