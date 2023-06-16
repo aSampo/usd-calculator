@@ -15,7 +15,7 @@ const CurrencyInput = () => {
   const [stringInput, setStringInput] = useState("0");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setStringInput(e.target.value.replace(/[^0-9]/g, ""));
+    setStringInput(e.target.value.replace(/[^0-9,.]/g, ""));
 
     const number = parseFloat(e.target.value);
     setInput(number ? number : 0);
