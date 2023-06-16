@@ -2,6 +2,10 @@
 
 This is a simple calculator app that allows you to calculate the value of different types of dollar exchange rates in Argentina. It provides real-time exchange rates and performs calculations based on the differents rates.
 
+## Deployed App
+
+The app is deployed and accessible at [USD-ARS](https://usd-calculator.vercel.app/). Check it out!
+
 ## Features
 
 - Choose from multiple types of dollar exchange rates, such as Official, Blue, Bolsa, and Turista.
