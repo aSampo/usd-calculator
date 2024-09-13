@@ -5,10 +5,6 @@ This is a simple calculator app that allows you to calculate the value of differ
 ![image](https://github.com/aSampo/usd-calculator/assets/29290423/3ead3f91-9b95-470e-af80-b50ada7ce6e4)
 
 
-## Deployed App
-
-The app is deployed and accessible at [USD-ARS](https://usd-calculator.vercel.app/). Check it out!
-
 ## Features
 
 - Choose from multiple types of dollar exchange rates, such as Official, Blue, Bolsa, and Turista.
